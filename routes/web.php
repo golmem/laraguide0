@@ -77,5 +77,12 @@ Route::get('/inscription', function () {
      la fonction request recupere les données envoyées de formulaire egalement en post comme en get
 */
 Route::post('/inscription', function () {
+    //creation d'un nouvel utilisateur
+    $utilisateur = new \App\Models\Utilisateur;
+    $utilisateur->email = request('email');
+    $utilisateur->mot_de_passe = bcrypt(request('password'));
+
+    $utilisateur->save();
+
     return "nous avons recu votre email qui est :" . request('email') . 'et votre mdp qui est : ' . request('password');
 });
