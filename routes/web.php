@@ -61,7 +61,21 @@ Route::get('/road/{numero}', function () {
     view('nomDeLaRoute',['clé'=>$valeur])
     view('bonjour',['nom'=>$nom])
 */
-Route::get('/{nom}', function () {
+Route::get('/bonjour/{nom}', function () {
     $nom = request('nom');
     return view('bonjour', ['nom' => $nom]);
+});
+
+
+//creation d'une route pour notre formulaire d'inscription a travers l'action get
+Route::get('/inscription', function () {
+    return view('inscription');
+});
+
+//creation d'une route pour notre formulaire d'inscription a travers l'action post afin de recuperer les données
+/*
+     la fonction request recupere les données envoyées de formulaire egalement en post comme en get
+*/
+Route::post('/inscription', function () {
+    return "nous avons recu votre email qui est :" . request('email') . 'et votre mdp qui est : ' . request('password');
 });
