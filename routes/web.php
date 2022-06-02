@@ -38,3 +38,8 @@ Route::get('/', function () {
 Route::get('/road', function () {
     return view('route1');
 });
+
+//ajout d'une route afficant un message avec un parametre en plus 
+Route::get('/road/{numero}', function () {
+    return 'route' . request('numero');
+});
