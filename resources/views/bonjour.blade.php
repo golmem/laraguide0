@@ -1,29 +1,15 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@include('header')
+<h2>mauvaise methode</h2>
+{{--
+recupération du nom directement avec la fonction request
+mauvaise pratique
+les vues affichent juste
+--}}
+<h2>{{request('nom')}}</h2>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<hr>
 
-    <title>Laravel</title>
+<h2>♦ bonne methode ♦</h2>
+<h2>{{$nom}}</h2>
 
-
-</head>
-
-<body>
-    <h2>mauvaise methode</h2>
-    {{--
-    recupération du nom directement avec la fonction request
-    mauvaise pratique
-    les vues affichent juste
-    --}}
-    <h2>{{request('nom')}}</h2>
-
-    <hr>
-
-    <h2>♦ bonne methode ♦</h2>
-    <h2>{{$nom}}</h2>
-
-</body>
-
-</html>
+@include('footer')
