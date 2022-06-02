@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Utilisateur;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -77,12 +78,39 @@ Route::get('/inscription', function () {
      la fonction request recupere les données envoyées de formulaire egalement en post comme en get
 */
 Route::post('/inscription', function () {
-    //creation d'un nouvel utilisateur
-    $utilisateur = new \App\Models\Utilisateur;
-    $utilisateur->email = request('email');
-    $utilisateur->mot_de_passe = bcrypt(request('password'));
+    //creation et insertion d'un nouvel utilisateur avec la fonction static create
+    /*
+        create recupere et insere en base de données les données recupérées elle ajoute en son sein la fonction save
+        mais elle a besoin que l'on spécifie les champs que nous autorisons à etre inserer en bd 
+        pour des raisons de securité 
+        on spécifie les champs remplissable dans le model de la table ici ce sera la classe Etudiant
+        les champs seront contenus dans une variable tableau nommée fillable et aura une visibilité protected
+    */
 
-    $utilisateur->save();
+    $utilisateur = \App\Models\Utilisateur::create([
+        'email' => request('email'),
+        'mot_de_passe' => bcrypt(request('password'))
+    ]);
 
-    return "nous avons recu votre email qui est :" . request('email') . 'et votre mdp qui est : ' . request('password');
+
+    //creation d'un nouvel utilisateur avec les données des champs directement dans le constructeur
+    /* 
+        $utilisateur = new \App\Models\Utilisateur(
+        [
+            'email' => request('email'),
+            'mot_de_passe' => bcrypt(request('password'))
+        ]);
+    */
+
+    //insertion dans la bd avec la methode save();
+    //$utilisateur->save();
+
+    return "nous avons recu votre inscription";
+});
+
+//route pour affichage des utilisateurs avec la fonction all() qui recupere tous les utilisateurs de la bd
+Route::get('/afficher', function () {
+
+    $utilisateurs = \App\Models\Utilisateur::all();
+    return view('afficher', ['utilisateurs' => $utilisateurs]);
 });
