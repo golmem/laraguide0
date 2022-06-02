@@ -39,7 +39,29 @@ Route::get('/road', function () {
     return view('route1');
 });
 
-//ajout d'une route afficant un message avec un parametre en plus 
+//ajout d'une route affichant un message avec un parametre en plus 
+//pour passer un paramètre dans l'url on fait un slash et on le met entre accolade comme ceci : /{nomDuParametre}
+//request('parametre passé dans l'url') cette fonction recupère les parametre passé dans l'url et les affiches
 Route::get('/road/{numero}', function () {
     return 'route' . request('numero');
+});
+
+//route renvoyant sur une vue avec recuperation des parametres get
+/*Route::get('/bonjour/{nom}', function () {
+    return view('bonjour');
+});*/
+
+//route renvoyant sur une vue avec recuperation des parametres get defini au sein de la fonction dans une variable 
+/*
+    n'oubliez pas de definir comme il faut la variable dans la vue 
+    sinon la vue ne transporte pas directement le contenu des variables
+    on aura un tableau comme second paramètre de la vue pour prendre les variables en compte
+    le tableau fonctionne avec la logique clé => valeur
+    la valeur peut etre une variable ou une chaine directement défini
+    view('nomDeLaRoute',['clé'=>$valeur])
+    view('bonjour',['nom'=>$nom])
+*/
+Route::get('/{nom}', function () {
+    $nom = request('nom');
+    return view('bonjour', ['nom' => $nom]);
 });
