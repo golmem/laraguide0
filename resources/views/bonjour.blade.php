@@ -1,4 +1,7 @@
-@include('header')
+@extends('layouts')
+{{-- la directive extends('layouts') fait appel au fichier de base layouts et de sa structure --}}
+
+@section('contenu')
 <h2>mauvaise methode</h2>
 {{--
 recupération du nom directement avec la fonction request
@@ -12,4 +15,4 @@ les vues affichent juste
 <h2>♦ bonne methode ♦</h2>
 <h2>{{$nom}}</h2>
 
-@include('footer')
+@endsection
