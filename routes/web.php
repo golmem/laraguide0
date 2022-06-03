@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UtilisateurController;
 use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\ConnexionController;
+use App\Http\Controllers\CompteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,7 +75,8 @@ Route::get('/connexion', [ConnexionController::class, 'formulaire']);
 Route::post('/connexion', [ConnexionController::class, 'traitement']);
 
 //redirection
-Route::view('/mon-compte', 'mon-compte');
+Route::get('/mon-compte', [CompteController::class, 'accueil']);
+Route::get('/deconnexion', [CompteController::class, 'deconnexion']);
 /* --------------------------------------------------------------------------*/
 
 //route pour afficher la liste des utilisateurs 

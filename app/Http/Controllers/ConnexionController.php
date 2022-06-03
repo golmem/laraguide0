@@ -31,7 +31,7 @@ class ConnexionController extends Controller
         ]);
 
         if ($resultat) {
-            //redirextion si resultat renvoi true
+            //redirection si resultat renvoi true
             return redirect('/mon-compte');
         }
 

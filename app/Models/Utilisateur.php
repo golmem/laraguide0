@@ -25,4 +25,9 @@ class Utilisateur extends Model implements Authenticatable
         //ca retourne le champ mot_de_passe de la bd
         return $this->mot_de_passe;
     }
+
+    public function getRememberTokenName()
+    {
+        return '';
+    }
 }
