@@ -90,19 +90,24 @@ Route::post('/inscription', function () {
     /*
         validation des champs du formulaire avant insertion avec la methode validate([clé=>valeur(s) ou tableau de valeurs])
         ici les clés sont les valeur des attributs name du formulaire
-        des attributs de validate il ya :
-            required pour dire que le champ est obligatoire
-            email pour dire que cela doit etre forcement un emmail
-            confirmed pour forcer le mdp et le mdp de confirmation à etre identique
-            min pour le minimum de caractere
-            max pour le maximum de caractere
-            unique pour dire que le champ doit etre unique
+        les regles de validate il ya :
+            required ===> pour dire que le champ est obligatoire.
+            email ===>  pour dire que cela doit etre forcement un emmail.
+            confirmed ===>  pour forcer le mdp et le mdp de confirmation à etre identique.
+            min ===>  pour le minimum de caractere.
+            max ===>  pour le maximum de caractere.
+            unique ===>  pour dire que le champ doit etre unique il elle secrit ainsi 
+                        ==> unique:nomDeLaTable,nomDuChamp
     */
 
     request()->validate([
-        'email' => ['required', 'email'],
+        'email' => ['required', 'email', 'unique:utilisateurs,email'],
         'password' => ['required', 'confirmed', 'min:8'],
         'password_confirmation' => ['required']
+    ], [
+        //message personnalisé attribut name du formulaire suivi d'un point a laquelle on ajoute la regle à personnaliser
+        //'password.min'=> 'message'
+        'password.min' => 'pour des raisons de securité votre mot de passe doit avoir au moins :min caractères'
     ]);
 
     $utilisateur = \App\Models\Utilisateur::create([
