@@ -73,5 +73,9 @@ Route::get('/connexion', [ConnexionController::class, 'formulaire']);
 //traitement
 Route::post('/connexion', [ConnexionController::class, 'traitement']);
 
+//redirection
+Route::view('/mon-compte', 'mon-compte');
+/* --------------------------------------------------------------------------*/
+
 //route pour afficher la liste des utilisateurs 
 Route::get('/afficher', [UtilisateurController::class, 'liste']);

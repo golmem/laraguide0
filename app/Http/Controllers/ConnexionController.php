@@ -30,7 +30,15 @@ class ConnexionController extends Controller
             'password' => request('password')
         ]);
 
-        var_dump($resultat);
-        return 'traitement du formulaire';
+        if ($resultat) {
+            //redirextion si resultat renvoi true
+            return redirect('/mon-compte');
+        }
+
+        //si resultat est false on retourne la page de connexion
+        //avec l'ancien email renseigné grace à withInput, et on affiche un message d'erreur avec withErrors ([$cléChamp=>$message])
+        return back()->withInput()->withErrors([
+            'email' => 'vos identifiants sont incorrects'
+        ]);
     }
 }
