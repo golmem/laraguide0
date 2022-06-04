@@ -7,7 +7,6 @@ use App\Http\Controllers\ConnexionController;
 use App\Http\Controllers\CompteController;
 
 
-Route::view('/', 'welcome');
 /*************************************************************
  * INSCRIPTION
  ************************************************************* */
@@ -32,5 +31,14 @@ Route::get('/deconnexion', [CompteController::class, 'deconnexion']);
 Route::post('/modification-mdp', [CompteController::class, 'mofificationMdp']);
 /* --------------------------------------------------------------------------*/
 
-//route pour afficher la liste des utilisateurs 
-Route::get('/afficher', [UtilisateurController::class, 'liste']);
+//route pour afficher la liste des utilisateurs c'est notre page d'accueil
+Route::get('/', [UtilisateurController::class, 'liste']);
+
+/* --------------------------------------------------------------------------*/
+/*************************************************************
+ * RECUPERATION D'UN UTILISATEUR EN GET
+ ************************************************************* */
+
+//notez que la route est mise en fin pour eviter qu'elle prenne la priorité sur les autres routes qui vont la suivre
+Route::get('/{email}', [UtilisateurController::class, 'voir']);
+/* --------------------------------------------------------------------------*/
