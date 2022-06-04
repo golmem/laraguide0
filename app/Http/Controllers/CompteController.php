@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Utilisateur;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Laracasts\Flash\Flash;
 
 class CompteController extends Controller
 {
@@ -10,13 +14,8 @@ class CompteController extends Controller
     {
 
         if (auth()->guest()) {
-            /*
-            premiere facon de definir un message flash ===> 
-                Session::flash('error', 'vous devez vous connecter');
-                return redirect('/connexion');
-            */
-
-            //deuxieme methode sur une ligne
+            //premiere facon d'envoyer un message flash
+            //Session::flash('error', 'vous devez vous connecter');
             return redirect('/connexion')->with('error', 'vous devez vous connecter');
         }
         return view('mon-compte');
@@ -26,5 +25,32 @@ class CompteController extends Controller
     {
         auth()->logout();
         return redirect('/');
+    }
+
+    public function mofificationMdp()
+    {
+        if (auth()->guest()) {
+            return redirect('/connexion')->with('error', 'vous devez vous connecter');
+        }
+        request()->validate([
+            'password' => ['required', 'min:8', 'confirmed'],
+            'password_confirmation' => ['required']
+        ]);
+
+        //v1
+        /*$id = auth()->id();
+        $utilisateur = Utilisateur::find($id);
+        $utilisateur->mot_de_passe = bcrypt(request('password'));
+        $utilisateur->save();*/
+
+        //v2 recuperer l'id appel du model pour la requete
+        $id = auth()->id();
+
+        Utilisateur::where('id', $id)->update([
+            'mot_de_passe' => bcrypt(request('password'))
+        ]);
+
+        flash('mdp modifer')->success();
+        return back();
     }
 }

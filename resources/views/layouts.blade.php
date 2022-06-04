@@ -16,7 +16,6 @@
     </header>
     <hr>
     <div class="container">
-
         {{-- affichage du message flash d'erreur --}}
         @if (session()->has('error'))
         <div class="notification is-danger">
