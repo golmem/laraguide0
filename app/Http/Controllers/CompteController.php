@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 
 class CompteController extends Controller
 {
@@ -11,9 +10,14 @@ class CompteController extends Controller
     {
 
         if (auth()->guest()) {
-            return redirect('/connexion')->withErrors([
-                'email' => 'vous devez vous connecter pour acceder au profil'
-            ]);
+            /*
+            premiere facon de definir un message flash ===> 
+                Session::flash('error', 'vous devez vous connecter');
+                return redirect('/connexion');
+            */
+
+            //deuxieme methode sur une ligne
+            return redirect('/connexion')->with('error', 'vous devez vous connecter');
         }
         return view('mon-compte');
     }

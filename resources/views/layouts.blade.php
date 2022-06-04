@@ -9,14 +9,24 @@
 </head>
 
 <body class="container">
+
     {{-- preparation du plan de travail de base ou modele de depart de toutes les pages àvenir --}}
     <header>
         <h1>i am the header</h1>
     </header>
     <hr>
     <div class="container">
+
+        {{-- affichage du message flash d'erreur --}}
+        @if (session()->has('error'))
+        <div class="notification is-danger">
+            <p>{{session()->get('error')}}</p>
+        </div>
+        @endif
+
         {{-- la directive yield fais comprendre que le contenu des pages sera en sont sein --}}
         @yield('contenu')
+
     </div>
     <hr>
     <footer>

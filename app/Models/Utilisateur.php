@@ -26,6 +26,7 @@ class Utilisateur extends Model implements Authenticatable
         return $this->mot_de_passe;
     }
 
+    //on utilise pas la methode se souvenir de moi donc on retourne une chaine vide pour eviter les erreurs
     public function getRememberTokenName()
     {
         return '';
