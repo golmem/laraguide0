@@ -12,7 +12,35 @@
 
     {{-- preparation du plan de travail de base ou modele de depart de toutes les pages àvenir --}}
     <header>
-        <h1>i am the header</h1>
+        {{-- le conteneur--}}
+        <nav class="navbar is-light mt-5">
+            {{-- le menu --}}
+            <div class="navbar-menu mt-2 p-2">
+
+                {{-- partie gauche du menu --}}
+                <div class="navbar-start">
+                    <a href="/" class="navbar-item {{request()->is('/')?'is-active':''}}">Accueil</a>
+                </div>
+
+                {{-- condition au cas où la personne est connecté ou pas --}}
+                {{-- activation du lien actif avec la methode request()->is('nom de la route') --}}
+                @if (auth()->check())
+                {{-- partie droite du menu --}}
+                <div class="navbar-end">
+                    <a href="/mon-compte" class="navbar-item {{request()->is('mon-compte')?'is-active':''}}">Mon
+                        Compte</a>
+                    <a href="/deconnexion" class="navbar-item">Deconnexion</a>
+                </div>
+                @else
+                {{-- partie droite du menu --}}
+                <div class="navbar-end">
+                    <a href="/inscription"
+                        class="navbar-item {{request()->is('inscription')?'is-active':''}} ">Inscription</a>
+                    <a href="/connexion" class="navbar-item {{request()->is('connexion')?'is-active':''}}">Connexion</a>
+                </div>
+                @endif
+            </div>
+        </nav>
     </header>
     <hr>
     <div class="container">
