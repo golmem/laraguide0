@@ -29,12 +29,11 @@ class UtilisateurController extends Controller
 
         //$messages = Message::where('utilisateur_id', $utilisateur->id)->orderByDesc('created_at')->get();
 
-        //pareil que orderByDesc
-        $messages = Message::where('utilisateur_id', $utilisateur->id)->latest()->get();
-
+        //relation un à plusieurs
+        //on enleve === $messages = $utilisateur->messages === ici pour mettre directement dans la vue afin de simplifier le code ;
+        //aussi la vue est plus simple
         return view('utilisateur', [
-            'utilisateur' => $utilisateur,
-            'messages' => $messages
+            'utilisateur' => $utilisateur
         ]);
     }
 }

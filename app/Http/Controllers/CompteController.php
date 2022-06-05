@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Utilisateur;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use Laracasts\Flash\Flash;
 
 class CompteController extends Controller
 {

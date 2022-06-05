@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Utilisateur extends Model implements Authenticatable
 {
     use HasFactory;
@@ -17,6 +18,14 @@ class Utilisateur extends Model implements Authenticatable
 
     protected $fillable = ['email', 'mot_de_passe'];
 
+    /**
+     * relation un à plusieurs
+     */
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class)->latest();
+    }
     /*
     redefinition de la fonction getAuthPassword
     */

@@ -12,8 +12,8 @@
         <div class="field">
             <label class="label">Message</label>
             <div class="control">
-                <textarea class="textarea" name="message" placeholder="envoyez des messages" cols="20"
-                    rows="10"></textarea>
+                <textarea class="textarea" name="message" resize="off" placeholder="envoyez des messages" cols="15"
+                    rows="5"></textarea>
             </div>
             @if ($errors->has('message'))
             <p class="is-danger">{{$errors->first('message')}}</p>
@@ -25,8 +25,9 @@
     </form>
     @endif
 
-    @foreach ($messages as $message)
+    @foreach ($utilisateur->messages as $message)
     <div class="message mt-5 mb-2 is-primary">
+        <p>Autheur du message : {{$message->utilisateur->email}}</p>
         <p class="message-header">message envoyé le :
             <strong>{{$message->created_at}}</strong>
         </p>
@@ -34,5 +35,6 @@
     </div>
     <hr>
     @endforeach
+
 </div>
 @endsection
