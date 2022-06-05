@@ -12,12 +12,6 @@ class CompteController extends Controller
     //utilisation de la methode auth()->guest pour savoir si l'utilisateur est un invité
     public function accueil()
     {
-
-        if (auth()->guest()) {
-            //premiere facon d'envoyer un message flash
-            //Session::flash('error', 'vous devez vous connecter');
-            return redirect('/connexion')->with('error', 'vous devez vous connecter');
-        }
         return view('mon-compte');
     }
 
@@ -29,9 +23,6 @@ class CompteController extends Controller
 
     public function mofificationMdp()
     {
-        if (auth()->guest()) {
-            return redirect('/connexion')->with('error', 'vous devez vous connecter');
-        }
         request()->validate([
             'password' => ['required', 'min:8', 'confirmed'],
             'password_confirmation' => ['required']

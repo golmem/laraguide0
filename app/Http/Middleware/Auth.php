@@ -16,6 +16,9 @@ class Auth
      */
     public function handle(Request $request, Closure $next)
     {
+        if (auth()->guest()) {
+            return redirect('/connexion')->with('error', 'vous devez vous connecter');
+        }
         return $next($request);
     }
 }

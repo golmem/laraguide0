@@ -10,11 +10,6 @@ class MessageController extends Controller
     //nouveau message
     public function nouveau()
     {
-        //redirection si l'utilisateur est un invité
-        if (auth()->guest()) {
-            return redirect('/connexion')->with('error', 'vous devez vous connecter');
-        }
-
         //validation
         request()->validate([
             'message' => ['required']
