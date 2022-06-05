@@ -5,6 +5,7 @@ use App\Http\Controllers\UtilisateurController;
 use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\ConnexionController;
 use App\Http\Controllers\CompteController;
+use App\Http\Controllers\MessageController;
 
 
 /*************************************************************

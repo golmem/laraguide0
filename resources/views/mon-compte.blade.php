@@ -8,10 +8,6 @@
 <a class="button" href="/deconnexion">deconnexion</a>
 {{-- affichage du message flash --}}
 
-<div class="mt-2 message is-primary">
-    @include('flash::message')
-</div>
-
 <form action="/modification-mdp" method="POST" class="section">
     @csrf
     <legend>modifier le mot de passe</legend>
