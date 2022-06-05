@@ -34,6 +34,15 @@ Route::post('/modification-mdp', [CompteController::class, 'mofificationMdp']);
 //route pour afficher la liste des utilisateurs c'est notre page d'accueil
 Route::get('/', [UtilisateurController::class, 'liste']);
 
+
+/* --------------------------------------------------------------------------*/
+
+/*************************************************************
+ * message pour l'utilisateur connecté
+ ************************************************************* */
+
+Route::post('/messages', [MessageController::class, 'nouveau']);
+
 /* --------------------------------------------------------------------------*/
 /*************************************************************
  * RECUPERATION D'UN UTILISATEUR EN GET
