@@ -12,7 +12,7 @@
         <div class="field">
             <label class="label">Message</label>
             <div class="control">
-                <textarea class="textarea" name="message" placeholder="envoyez des messages" cols="30"
+                <textarea class="textarea" name="message" placeholder="envoyez des messages" cols="20"
                     rows="10"></textarea>
             </div>
             @if ($errors->has('message'))
@@ -24,5 +24,15 @@
         </div>
     </form>
     @endif
+
+    @foreach ($messages as $message)
+    <div class="message mt-5 mb-2 is-primary">
+        <p class="message-header">message envoyé le :
+            <strong>{{$message->created_at}}</strong>
+        </p>
+        <p class="message-body">{{$message->contenu}}</p>
+    </div>
+    <hr>
+    @endforeach
 </div>
 @endsection

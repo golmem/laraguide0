@@ -26,23 +26,26 @@ Route::get('/connexion', [ConnexionController::class, 'formulaire']);
 //traitement
 Route::post('/connexion', [ConnexionController::class, 'traitement']);
 
+/*************************************************************
+ * GROUPE DE ROUTE POUR MIDDLEWARE
+ * 
+ * il permet de grouper un ensemble de route ayant en commun des
+ * middleware dans notre cas
+ ************************************************************* */
 
-Route::get('/mon-compte', [CompteController::class, 'accueil'])->middleware(Auth::class);
-Route::get('/deconnexion', [CompteController::class, 'deconnexion'])->middleware(Auth::class);
-Route::post('/modification-mdp', [CompteController::class, 'mofificationMdp'])->middleware(Auth::class);
+Route::middleware([Auth::class])->group(function () {
+
+    Route::get('/mon-compte', [CompteController::class, 'accueil']);
+    Route::get('/deconnexion', [CompteController::class, 'deconnexion']);
+    Route::post('/modification-mdp', [CompteController::class, 'mofificationMdp']);
+    Route::post('/messages', [MessageController::class, 'nouveau']);
+});
+
+
 /* --------------------------------------------------------------------------*/
 
 //route pour afficher la liste des utilisateurs c'est notre page d'accueil
 Route::get('/', [UtilisateurController::class, 'liste']);
-
-
-/* --------------------------------------------------------------------------*/
-
-/*************************************************************
- * message pour l'utilisateur connecté
- ************************************************************* */
-
-Route::post('/messages', [MessageController::class, 'nouveau'])->middleware(Auth::class);
 
 /* --------------------------------------------------------------------------*/
 /*************************************************************
