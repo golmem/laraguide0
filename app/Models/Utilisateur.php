@@ -27,9 +27,26 @@ class Utilisateur extends Model implements Authenticatable
         return $this->hasMany(Message::class)->latest();
     }
 
+    /**
+     * cette methode permet de creer la relation
+     * un utilisateur peut suivre plusieurs utilisateurs
+     * plusieur utilisateurs peuvent suivre un utilisateur
+     * belongsToMany prend comme parametre le 
+     *  1 - model de la table qui sera lié
+     *  2 - la table pivot
+     *  3 - la clé primaire de suivi de la premiere table
+     *  4 - la clé primaire de suivi de la seconde table
+     */
     public function suivis()
     {
         return $this->belongsToMany(Utilisateur::class, 'suivis', 'suiveur_id', 'suivi_id');
+    }
+
+    //la fonction pour savoir i un utilsateur est suivi ou pas
+
+    public function suit($utilisateur)
+    {
+        return $this->suivis()->where('suivi_id', $utilisateur->id)->exists();
     }
 
     /*

@@ -9,11 +9,23 @@
                 {{$utilisateur->email}}
             </div>
 
+
             @auth
             <div class="level-item">
                 <form method="POST" action="/{{$utilisateur->email}}/suivis">
                     @csrf
-                    <button class="button is-primary" type="submit">Suivre</button>
+
+                    @if (auth()->user()->suit($utilisateur))
+                    @method('delete')
+                    @endif
+
+                    <button class="button is-primary" type="submit">
+                        @if (auth()->user()->suit($utilisateur))
+                        ne plus suivre
+                        @else
+                        Suivre
+                        @endif
+                    </button>
                 </form>
             </div>
             @endauth

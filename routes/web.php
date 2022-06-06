@@ -41,6 +41,7 @@ Route::middleware([Auth::class])->group(function () {
     Route::post('/modification-mdp', [CompteController::class, 'mofificationMdp']);
     Route::post('/messages', [MessageController::class, 'nouveau']);
     Route::post('/{email}/suivis', [SuivisController::class, 'nouveau']);
+    Route::delete('/{email}/suivis', [SuivisController::class, 'enlever']);
 });
 
 
