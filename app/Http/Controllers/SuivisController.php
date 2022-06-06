@@ -14,12 +14,13 @@ class SuivisController extends Controller
     {
         //recuperation des données de la personne connecté
         $utilisateurQuiVaSuivreId = Utilisateur::find(auth()->id());
+        $utilisateurQuiVaSuivre = auth()->user();
 
         //on recupere les données de lutilisateur qui va etre suivis
         $utilisateurQuiVaEtreSuivis = Utilisateur::where('email', request('email'))->firstOrFail();
 
         //envoi de Mail
-        Mail::to($utilisateurQuiVaEtreSuivis)->send(new NouveauSuiveurMail);
+        Mail::to($utilisateurQuiVaEtreSuivis)->send(new NouveauSuiveurMail($utilisateurQuiVaSuivre));
 
         //on recupere tous les suivis et on les attachent
         $utilisateurQuiVaSuivreId->suivis()->attach($utilisateurQuiVaEtreSuivis);
