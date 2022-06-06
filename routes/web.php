@@ -39,6 +39,7 @@ Route::middleware([Auth::class])->group(function () {
     Route::get('/deconnexion', [CompteController::class, 'deconnexion']);
     Route::post('/modification-mdp', [CompteController::class, 'mofificationMdp']);
     Route::post('/messages', [MessageController::class, 'nouveau']);
+    Route::post('/{email}/suivis', [SuivisController::class, 'nouveau']);
 });
 
 

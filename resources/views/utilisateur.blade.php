@@ -2,8 +2,23 @@
 
 @section('contenu')
 <div class="section">
-    <h1 class="is-h1">
-        {{$utilisateur->email}}
+    <h1 class="is-1 level">
+        <div class="level-left">
+
+            <div class="level-item">
+                {{$utilisateur->email}}
+            </div>
+
+            @auth
+            <div class="level-item">
+                <form method="POST" action="/{{utilsateur->email}}/suivis">
+                    @csrf
+                    <button class="button is-primary" type="submit">Suivre</button>
+                </form>
+            </div>
+            @endauth
+
+        </div>
     </h1>
 
     @if (auth()->check() AND auth()->id() === $utilisateur->id )
