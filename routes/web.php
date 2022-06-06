@@ -53,5 +53,5 @@ Route::get('/', [UtilisateurController::class, 'liste']);
  ************************************************************* */
 
 //notez que la route est mise en fin pour eviter qu'elle prenne la priorité sur les autres routes qui vont la suivre
-Route::get('/{email}', [UtilisateurController::class, 'voir']);
+Route::get('/{email}', [UtilisateurController::class, 'voir'])->middleware([Auth::class]);
 /* --------------------------------------------------------------------------*/
