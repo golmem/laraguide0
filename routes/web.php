@@ -6,6 +6,7 @@ use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\ConnexionController;
 use App\Http\Controllers\CompteController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\SuivisController;
 use App\Http\Middleware\Auth;
 
 /*************************************************************

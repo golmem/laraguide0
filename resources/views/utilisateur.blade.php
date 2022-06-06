@@ -11,7 +11,7 @@
 
             @auth
             <div class="level-item">
-                <form method="POST" action="/{{utilsateur->email}}/suivis">
+                <form method="POST" action="/{{$utilisateur->email}}/suivis">
                     @csrf
                     <button class="button is-primary" type="submit">Suivre</button>
                 </form>

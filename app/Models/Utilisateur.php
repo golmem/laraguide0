@@ -26,6 +26,12 @@ class Utilisateur extends Model implements Authenticatable
     {
         return $this->hasMany(Message::class)->latest();
     }
+
+    public function suivis()
+    {
+        return $this->belongsToMany(Utilisateur::class, 'suivis', 'suiveur_id', 'suivi_id');
+    }
+
     /*
     redefinition de la fonction getAuthPassword
     */
