@@ -19,26 +19,31 @@
 
                 {{-- partie gauche du menu --}}
                 <div class="navbar-start">
-                    <a href="/" class="navbar-item {{request()->is('/')?'is-active':''}}">Accueil</a>
+                    @include('partials.navbar-item',['lien'=>'/','texte'=>'Accueil'])
+                    @auth
+                    @include('partials.navbar-item',['lien'=>auth()->user()->email,'texte'=>auth()->user()->email])
+                    @endauth
                 </div>
 
                 {{-- condition au cas où la personne est connecté ou pas --}}
-                {{-- activation du lien actif avec la methode request()->is('nom de la route') --}}
-                @if (auth()->check())
+                {{-- la directive auth permet de savoir si l'utilisateur est connecté ou pas
+                il marche avec le else aussi --}}
+                @auth
                 {{-- partie droite du menu --}}
                 <div class="navbar-end">
-                    <a href="/mon-compte" class="navbar-item {{request()->is('mon-compte')?'is-active':''}}">Mon
-                        Compte</a>
-                    <a href="/deconnexion" class="navbar-item">Deconnexion</a>
+                    @include('partials.navbar-item',['lien'=>'mon-compte','texte'=>'Mon Compte'])
+
+                    @include('partials.navbar-item',['lien'=>'deconnexion','texte'=>'Deconnexion'])
                 </div>
                 @else
                 {{-- partie droite du menu --}}
                 <div class="navbar-end">
-                    <a href="/inscription"
-                        class="navbar-item {{request()->is('inscription')?'is-active':''}} ">Inscription</a>
-                    <a href="/connexion" class="navbar-item {{request()->is('connexion')?'is-active':''}}">Connexion</a>
+                    @include('partials.navbar-item',['lien'=>'connexion','texte'=>'Connexion'])
+
+                    @include('partials.navbar-item',['lien'=>'inscription','texte'=>'Inscription'])
+
                 </div>
-                @endif
+                @endauth
             </div>
         </nav>
     </header>

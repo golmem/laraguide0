@@ -12,7 +12,7 @@
         <div class="field">
             <label class="label">Message</label>
             <div class="control">
-                <textarea class="textarea" name="message" resize="off" placeholder="envoyez des messages" cols="15"
+                <textarea class="textarea" name="message" placeholder="envoyez des messages" cols="15"
                     rows="5"></textarea>
             </div>
             @if ($errors->has('message'))
