@@ -22,6 +22,7 @@
                     @include('partials.navbar-item',['lien'=>'/','texte'=>'Accueil'])
                     @auth
                     @include('partials.navbar-item',['lien'=>auth()->user()->email,'texte'=>auth()->user()->email])
+                    @include('partials.navbar-item',['lien'=>'actualites','texte'=>'Actualités'])
                     @endauth
                 </div>
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\ConnexionController;
 use App\Http\Controllers\CompteController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\SuivisController;
+use App\Http\Controllers\ActualiteController;
 use App\Http\Middleware\Auth;
 
 /*************************************************************
@@ -39,7 +40,9 @@ Route::middleware([Auth::class])->group(function () {
     Route::get('/mon-compte', [CompteController::class, 'accueil']);
     Route::get('/deconnexion', [CompteController::class, 'deconnexion']);
     Route::post('/modification-mdp', [CompteController::class, 'mofificationMdp']);
+    Route::post('/modification-avatar', [CompteController::class, 'modificationAvatar']);
     Route::post('/messages', [MessageController::class, 'nouveau']);
+    Route::get('/actualites', [ActualiteController::class, 'liste']);
     Route::post('/{email}/suivis', [SuivisController::class, 'nouveau']);
     Route::delete('/{email}/suivis', [SuivisController::class, 'enlever']);
 });

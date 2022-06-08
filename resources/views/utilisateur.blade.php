@@ -5,10 +5,16 @@
     <h1 class="is-1 level">
         <div class="level-left">
 
-            <div class="level-item">
-                {{$utilisateur->email}}
+            <div class="media">
+                <div class="media-left">
+                    <figure class="image is-64x64">
+                        <img src="/storage/{{$utilisateur->avatar}}" alt="image d'avatar">
+                    </figure>
+                </div>
+                <div class="media-content">
+                    <h1 class="title is-1"> {{$utilisateur->email}}</h1>
+                </div>
             </div>
-
 
             @auth
             <div class="level-item">

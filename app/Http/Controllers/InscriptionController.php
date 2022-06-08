@@ -33,7 +33,7 @@ class InscriptionController extends Controller
             'mot_de_passe' => bcrypt(request('password'))
         ]);
 
-
-        return "nous avons recu votre inscription";
+        flash('Super! Connectez-vous');
+        return redirect('/connexion');
     }
 }

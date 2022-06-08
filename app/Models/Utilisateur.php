@@ -16,7 +16,7 @@ class Utilisateur extends Model implements Authenticatable
     */
     use AuthAuthenticatable;
 
-    protected $fillable = ['email', 'mot_de_passe'];
+    protected $fillable = ['email', 'mot_de_passe', 'avatar'];
 
     /**
      * relation un à plusieurs

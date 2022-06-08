@@ -43,4 +43,26 @@ class CompteController extends Controller
         flash('mdp modifer')->success();
         return back();
     }
+
+    public function modificationAvatar()
+    {
+        //validation
+        request()->validate([
+            'avatar' => ['required', 'image']
+        ]);
+
+        //stockage de limage avec un nom unique  grace a store('nomdudossierdestockage','nom du disque de stockage')
+        //php artisan link permet de lier le fichier de stockage public et privé
+
+        $path = request('avatar')->store('avatars', 'public');
+
+        $id = auth()->id();
+
+        $user = Utilisateur::where('id', $id)->update([
+            'avatar' => $path
+        ]);
+
+        flash('votre avatar a été mis à jour');
+        return back();
+    }
 }

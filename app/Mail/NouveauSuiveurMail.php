@@ -30,6 +30,7 @@ class NouveauSuiveurMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Nouveau Suiveur')->view('mails.nouveau_suiveur');
+        return $this->subject('Nouveau Suiveur')->view('mails.nouveau_suiveur')
+            ->text('mails.nouveau_suiveur_text'); //->markdown('mails.nouveau_suiveur')
     }
 }
